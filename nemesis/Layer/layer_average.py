@@ -3,7 +3,7 @@ from scipy.integrate import simps
 from .interp import interp
 import sys
 sys.path.append('../')
-from Data import Calc_mmw
+from Utils import calc_mmw
 
 k_B = 1.38065e-23
 
@@ -140,7 +140,7 @@ def layer_average(RADIUS, H, P, T, ID, VMR, BASEH, BASEP,
             PP = AMOUNT * PRESS
             AMOUNT = AMOUNT * TOTAM
             for I in range(NLAY):
-                MOLWT[I] = Calc_mmw(VMR[I], ID)
+                MOLWT[I] = calc_mmw(ID, VMR[I])
 
     elif LAYINT == 1:
         # Curtis-Godson equivalent path for a gas with constant mixing ratio
@@ -174,7 +174,7 @@ def layer_average(RADIUS, H, P, T, ID, VMR, BASEH, BASEP,
                 for J in range(NVMR):
                     PP[I, J] = simps(pp[:,J]*duds,S)/TOTAM[I]
                 for K in range(NINT):
-                    molwt[K] = Calc_mmw(amount[K,:], ID)
+                    molwt[K] = calc_mmw(ID, amount[K,:])
                 MOLWT[I] = simps(molwt*duds,S)/TOTAM[I]
             else:
                 amount = interp(H, VMR, h)
@@ -182,7 +182,7 @@ def layer_average(RADIUS, H, P, T, ID, VMR, BASEH, BASEP,
                 AMOUNT[I] = simps(amount*duds,S)
                 PP[I] = simps(pp*duds,S)/TOTAM[I]
                 for K in range(NINT):
-                    molwt[K] = Calc_mmw(amount[K], ID)
+                    molwt[K] = calc_mmw(ID, amount[K])
                 MOLWT[I] = simps(molwt*duds,S)/TOTAM[I]
 
     # Scale back to vertical layers

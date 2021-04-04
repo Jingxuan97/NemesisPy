@@ -63,6 +63,9 @@ BASEH, BASEP, BASET, HEIGHT, PRESS, TEMP, TOTAM, AMOUNT, PP, LAYSF, DELH\
     = Layer.integrate(H=H,P=P,T=T, LAYANG=LAYANG, ID=ID,VMR=VMR)
 
 
+
+
+"""
 print('{:<8} {:<8} {:<8} {:<8} {:<8} {:<8} {:<8} '.format(
 'BASEH', 'DELH', "BASEP", 'BASET', 'TOTAM', 'PRESS', 'TEMP'),end="")
 for j in range(NVMR):
@@ -102,7 +105,7 @@ plt.plot(TOTAM*1e-4, BASEH*1e-3, label='Python')
 plt.ylabel('height (km)')
 plt.xlabel('total amount (no./cm^2)')
 plt.legend()
-
+"""
 
 ###############################################################################
 #                                                                             #

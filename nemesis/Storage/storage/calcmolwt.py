@@ -1,20 +1,11 @@
-#!/usr/local/bin/python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# from gas_info import gas_info
 """
-Data reference files.
-
-Contains definition of units, constants, gas identifiers (RADTRAN ID),
-gas isotope identifiers, gas isotope relative abundances, atomic mass,
-partitiona function coefficients.
-
-Contains callable functions:
-Calc_MMW(VMR, ID, ISO=0):
-    calculate mean molecular weight using the radtrans data base.
-look_up(gas_name):
-    look up information about a molecule using the RADTRAN data base.
+Routine to calculate mean molecular weight using the radtrans data base.
 """
 
-def Calc_mmw(VMR, ID, ISO=0):
+def Calc_MMW(VMR, ID, ISO=0):
     NGAS = len(ID)
     MMW = 0
     if ISO == 0:
@@ -23,11 +14,12 @@ def Calc_mmw(VMR, ID, ISO=0):
             MMW += VMR[i] * mass
     return MMW
 
-def look_up(gas_name):
-    index = gas_id[gas_name]
+def look_up(name):
+    index = gas_id[name]
     index = str(index)
     return gas_info[index]
-
+    
+    
 unit = {
     'pc': 3.08567e16,        # m parsec
     'ly': 9.460730e15,       # m lightyear
